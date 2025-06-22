@@ -1,3 +1,38 @@
+# Bakery Shop Project
+
+This is a simple bakery shop application built with React, TypeScript, and Vite.
+
+## How to Run the Project
+
+**Requirements:**
+*   Node.js (version 18 or higher)
+*   npm (comes with Node.js)
+
+**Instructions:**
+
+1.  **Clone the repository:**
+    ```sh
+    git clone git@github.com:Izyus/hw38.git
+    ```
+
+2.  **Navigate to the project directory:**
+    ```sh
+    cd hw38
+    ```
+
+3.  **Install dependencies:**
+    ```sh
+    npm install
+    ```
+
+4.  **Run the application:**
+    ```sh
+    npm run dev
+    ```
+The application will be available at `http://localhost:5173/`.
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
