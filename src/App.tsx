@@ -14,10 +14,22 @@ import {navItems, productItems} from "./configurations/nav-config.ts";
 import ErrorPage from "./components/servicePages/ErrorPage.tsx";
 import {useEffect} from "react";
 import NavigatorDeskTop from "./components/navigation/NavigatorDeskTop.tsx";
+import {useSelector} from "react-redux";
+import type {RootState} from "./redux/store.ts";
+import SignUp from "./components/SignUp";
+import SignIn from "./components/SignIn";
 
 function App() {
     const location = useLocation();
     const navigate = useNavigate();
+    const userRole = useSelector((state: RootState) => state.user.role);
+
+    const filteredNavItems = navItems.filter(item => {
+        if (userRole === 'admin' && item.title === 'Shopping Cart') {
+            return false;
+        }
+        return true;
+    });
 
     useEffect(() => {
         if(location.pathname === `/${Paths.ERROR}`)
@@ -28,11 +40,13 @@ function App() {
         <Routes>
             {/*<Route path={Paths.HOME} element={<Layout/>}>*/}
             {/*<Route path={Paths.HOME} element={<Navigator items={navItems}/>}>*/}
-            <Route path={Paths.HOME} element={<NavigatorDeskTop items={navItems}/>}>
+            <Route path={Paths.HOME} element={<NavigatorDeskTop items={filteredNavItems}/>}>
                 <Route index element={<Home/>}/>
                 <Route path={Paths.CUSTOMERS} element={<Customers/>}/>
                 <Route path={Paths.ORDERS} element={<Orders/>}/>
                 <Route path={Paths.CART} element={<ShoppingCart/>}/>
+                <Route path={Paths.SIGNUP} element={<SignUp/>}/>
+                <Route path={Paths.SIGNIN} element={<SignIn/>}/>
                 {/*<Route path={Paths.PRODUCTS} element={<Products/>}/>*/}
                 {/*<Route path={Paths.PRODUCTS} element={<ProductLayout/>}>*/}
                 <Route path={Paths.PRODUCTS} element={<NavigatorDeskTop items={productItems}/>}>
